@@ -3,6 +3,7 @@
 include_once dirname(__FILE__) . "./constantes.php";
 include_once dirname(__FILE__) . "./conexionbdd.php";
 include_once dirname(__FILE__) . "./smartBDD.php";
+include_once dirname(__FILE__) . "./utiles.php";
 
 function getClientes() {
     return toArray(ejecutar("SELECT * FROM cliente"));
@@ -81,4 +82,20 @@ function addServicioFactura($id_factura, $servicio) {
     $tabla['otros'] = 'str';    
 
     return smart_insert('servicio', $servicio, $tabla);
+}
+
+function getFacturaPorID($id_factura){
+    $consulta = "SELECT * FROM factura WHERE idfactura =".escape($id_factura);
+    
+    $res = ejecutar($consulta);
+    
+    $fila = $res->fetch_assoc();
+    
+    return $fila;
+}
+
+function getServiciosDeFactura($id_factura){
+    $consulta = "SELECT * FROM servicio WHERE factura_idfactura =".escape($id_factura);
+    
+    return toArray(ejecutar($consulta));
 }

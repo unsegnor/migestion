@@ -2,6 +2,7 @@
 
 include_once dirname(__FILE__) . "./conexionbdd.php";
 include_once dirname(__FILE__) . "./constantes.php";
+include_once dirname(__FILE__) . "./utiles.php";
 
 //Función que recibe el nombre de la tabla, el objeto y un array con 
 //los campos y tipos de los campos que se van a insertar
@@ -35,7 +36,7 @@ function smart_insert($tabla, $objeto, $array_campo_tipo_conversion) {
                 $valorBDD = escape($valor);
                 $valido = true;
             } else if ($tipo === 'fyh') {
-                $valorBDD = "STR_TO_DATE('".escape($valor)."', '".Constantes::formato_fecha_mysql."')";
+                $valorBDD = f_json2bdd($valor);
                 $valido = true;
             }
 

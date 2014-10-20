@@ -49,7 +49,6 @@ $id = filter_input(INPUT_GET, 'id');
                 <input type="text" class="form-control" ng-model="servicio.concepto">
             </div>
             <div class="col-sm-3">
-                {{servicio.fecha_prestacion}}
                 <input type="datetime-local" class="form-control" ng-model="servicio.fecha_prestacion">
             </div>
             <div class="col-sm-2">
@@ -64,7 +63,6 @@ $id = filter_input(INPUT_GET, 'id');
                 <input type="text" class="form-control" ng-model="nuevoservicio.concepto">
             </div>
             <div class="col-sm-3">
-                {{nuevoservicio.fecha_prestacion}}
                 <input type="datetime-local" class="form-control" ng-model="nuevoservicio.fecha_prestacion">
             </div>
             <div class="col-sm-2">
@@ -75,6 +73,11 @@ $id = filter_input(INPUT_GET, 'id');
             </div>
             <div class="col-sm-1">
                 <button class="btn btn-success pull-right" ng-click="addServicio()"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-default" href="./../server/docugen/verFacturaPDF.php?id={{id}}" target="_blank">Emitir</button>
             </div>
         </div>
     </div>

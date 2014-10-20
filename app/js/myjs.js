@@ -144,17 +144,17 @@ function ponmenu() {
 
 //Espera un array de objetos {nombre, enlace} monta el menú según se indica en el array
 function setMenu(menu) {
-    
+
     var textoainsertar = "";
     var l = menu.length;
-    for (i = 0; i <l ; i++) {
+    for (i = 0; i < l; i++) {
         var entrada = menu[i];
-        textoainsertar += '<li><a href="'+entrada.enlace+'" class="link">'+entrada.nombre+'</a></li>';
+        textoainsertar += '<li><a href="' + entrada.enlace + '" class="link">' + entrada.nombre + '</a></li>';
     }
     document.getElementById('migasdepan').innerHTML = textoainsertar;
 }
 
-function BDDtoUTC(cadena){
+function BDDtoUTC(cadena) {
     //Deshacemos la cadena
     var fyh = cadena.split(' ');
     var f = fyh[0];
@@ -167,17 +167,29 @@ function BDDtoUTC(cadena){
     var hour = hms[0];
     var minute = hms[1];
     var second = hms[2];
-    
+
     //Ahora construimos la nueva fecha
     return Date.UTC(year, month, day, hour, minute, second);
 }
 
-function BDDtoUTCformat(cadena){
-    
+function BDDtoUTCformat(cadena) {
+
     //Añadimos la T en el espacio
     var respuesta = cadena.replace(' ', 'T');
     //Añadimos los milisegundos y la Z al final
     respuesta += ".000Z";
+
+    return respuesta;
+}
+
+function f_bdd2html(cadena) {
+
+    var respuesta = null;
+
+    //Si no es null
+    if (cadena != null) {
+        respuesta = cadena.replace(' ', 'T');
+    }
     
     return respuesta;
 }

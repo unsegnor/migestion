@@ -33,6 +33,8 @@
 <!-- Incluimos Jasny Bootstrap -->
 <script src="./js/jasny-bootstrap.min.js"></script>
 
+<!-- Incluimos la librería de jsPDF -->
+<script src="./js/jspdf.min.js"></script>
 
 </body>
 </html>
