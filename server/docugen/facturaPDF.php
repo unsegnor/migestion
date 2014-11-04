@@ -46,11 +46,11 @@ class facturaPDF extends FPDF {
         $this->Ln(5);
         $this->SetFont('Arial', '', 10);
         $this->Ln(5);
-        $this->campo("Nº Factura", sprintf('%08d', $this->factura['numero_factura']));
+        $this->campo("Nº Factura", sprintf('%010d', $this->factura['numero_factura']));
         $this->Ln(5);
-        $this->campo("Fecha", f_php2str($this->factura['fecha_expedicion']));
+        $this->campo("Fecha", ' 21-10-2014');//f_php2str($this->factura['fecha_expedicion']));
         $this->Ln(5);
-        $this->campo("N.I.F. Cliente", '12345678K');
+        $this->campo("N.I.F. Cliente", 'J18341107');
         //$this->Ln(5);
 
 
@@ -60,9 +60,9 @@ class facturaPDF extends FPDF {
         $y = 50;
         $ancho = 90;
 
-        $datos_envio_receptor = 'razon_social_receptor'
+        $datos_envio_receptor = 'Policlínica Guadix'
                 . "\n"
-                . 'domicilio_receotir';
+                . 'Adelantado Pedro de Mendoza y Luján, 18';
 
         $this->SetXY($x, $y);
         $this->MultiCell($ancho, 5, t($datos_envio_receptor));
@@ -79,7 +79,7 @@ class facturaPDF extends FPDF {
         $this->SetFont('Arial', 'B', 8);
         $this->MultiCell(0, 3, t("LA POSESIÓN DE ESTA FACTURA NO IMPLICA EL PAGO DE LA MISMA. PARA ACREDITARLO SERÁ NECESARIO DOCUMENTO BANCARIO O RECIBÍ QUE LO JUSTIFIQUE."), 0, 'C');
         $this->SetFont('Arial', 'B', 7);
-        $this->MultiCell(0, 3, t("Víctor Calatayud Asensio con C.I.F 47661755M, inscrito en el Registro Mercantil de Granada al tomo 67, folio 178, de la Sección General, inscripción 1ª de la hoja registral CR-1892."), 0, 'C');
+        //$this->MultiCell(0, 3, t("Víctor Calatayud Asensio con C.I.F 47661755M, inscrito en el Registro Mercantil de Granada al tomo 67, folio 178, de la Sección General, inscripción 1ª de la hoja registral CR-1892."), 0, 'C');
         $this->MultiCell(0, 3, t("De acuerdo con lo que establece la Ley Orgánica de Protección de Datos (LOPD) 15/1999, le informamos que los datos personales recogidos en este documento serán incluidos en un fichero bajo la responsabilidad de Víctor Calatayud Asensio, con la finalidad de cumplir los compromisos entre las partes. Puede ejercer sus derechos de acceso, cancelación, rectificación y oposición en Calle Veleta 43, 18015, Granada (Granada)"), 0, 'C');
     }
 
@@ -212,9 +212,9 @@ function generarFacturaPDF($id_factura) {
         $suma_total += $tb + $tc;
 
 
-        $pdf->Cell(190 / 4, 5, $tb . chr(128), 0, 0, 'C');
-        $pdf->Cell(190 / 4, 5, $tipo_impositivo . "%", 0, 0, 'C');
-        $pdf->Cell(190 / 4, 5, $tc . chr(128), 0, 0, 'C');
+        $pdf->Cell(190 / 4, 5, round($tb,4) . chr(128), 0, 0, 'C');
+        $pdf->Cell(190 / 4, 5, round($tipo_impositivo,4) . "%", 0, 0, 'C');
+        $pdf->Cell(190 / 4, 5, round($tc,4) . chr(128), 0, 0, 'C');
         $pdf->Cell(190 / 4, 5, "", 0, 0, 'C');
         $pdf->Ln(5);
     }
@@ -223,7 +223,7 @@ function generarFacturaPDF($id_factura) {
     $pdf->Cell(190 / 4, 5, "", 0, 0, 'C');
     $pdf->Cell(190 / 4, 5, "", 0, 0, 'C');
     $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(190 / 4, 5, $suma_total . chr(128), 0, 0, 'C');
+    $pdf->Cell(190 / 4, 5, round($suma_total,4) . chr(128), 0, 0, 'C');
     $pdf->SetFont('Arial', '', 10);
     $pdf->Ln(5);
 
